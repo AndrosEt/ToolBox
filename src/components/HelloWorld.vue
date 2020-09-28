@@ -1,9 +1,21 @@
 <template>
-  <div class="hello">
-    <el-button @click="visible = true">Button</el-button>
-    <el-dialog :visible.sync="visible" title="Hello world">
-      <p>Try Element</p>
-    </el-dialog>
+  <div class="container">
+    <div class="html-optimize">
+      <el-input
+              type="textarea"
+              :rows="10"
+              placeholder="请输入内容"
+              v-model="textareaInput">
+      </el-input>
+
+      <el-input
+              type="textarea"
+              :rows="10"
+              placeholder="请输入内容"
+              v-model="textareaOutput">
+      </el-input>
+    </div>
+    <el-button class="btn" type="primary" @click="compress" >转化</el-button>
   </div>
 </template>
 
@@ -15,14 +27,21 @@ export default {
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      textareaInput: '',
+      textareaOutput: ''
+    }
+  },
+  methods: {
+    compress() {
+      this.textareaOutput = this.textareaInput.replace(/\s{2,}/g, ' ').replace(/\n/g, '')
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
 h3 {
   margin: 40px 0 0;
 }
@@ -37,4 +56,18 @@ li {
 a {
   color: #42b983;
 }
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .html-optimize {
+      display: flex;
+      flex-direction: row;
+    }
+    .btn {
+      margin-top: 20px;
+      width: fit-content;
+      align-self: flex-end;
+    }
+  }
 </style>
