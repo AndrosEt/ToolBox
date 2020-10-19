@@ -17,7 +17,6 @@
       <el-input
               type="textarea"
               :rows="10"
-              placeholder="请输入内容"
               v-model="textareaOutput"
               style="margin-left: 20px">
       </el-input>
