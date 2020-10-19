@@ -2,8 +2,8 @@
   <div class="container">
     <el-radio-group v-model="functionType" style="margin: 20px">
       <el-radio :label="0">HTML 压缩</el-radio>
-      <el-radio :label="1">Base64编码</el-radio>
-      <el-radio :label="2">Base64解码</el-radio>
+      <el-radio :label="1">Base64 编码</el-radio>
+      <el-radio :label="2">Base64 解码</el-radio>
     </el-radio-group>
     <div class="html-optimize">
       <el-input
@@ -50,13 +50,13 @@
       compress() {
         switch (this.functionType) {
           case 0 :
-            this.textareaOutput = this.textareaInput.replace(/\s{2,}/g, ' ').replace(/\n/g, '')
+            this.textareaOutput = this.textareaInput.trim().replace(/\s{2,}/g, ' ').replace(/\n/g, '')
             break;
           case 1 :
-            this.textareaOutput = Base64.encode(this.textareaInput)
+            this.textareaOutput = Base64.encode(this.textareaInput.trim())
             break;
           case 2:
-            this.textareaOutput = Base64.decode(this.textareaInput)
+            this.textareaOutput = Base64.decode(this.textareaInput.trim())
             break;
         }
       }
