@@ -3,7 +3,7 @@
     <el-radio-group v-model="functionType" style="margin: 20px">
       <el-radio :label="0">HTML 压缩</el-radio>
       <el-radio :label="1">Base64编码</el-radio>
-      <el-radio :label="2">Base64编码</el-radio>
+      <el-radio :label="2">Base64解码</el-radio>
     </el-radio-group>
     <div class="html-optimize">
       <el-input
