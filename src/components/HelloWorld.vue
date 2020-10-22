@@ -4,6 +4,7 @@
       <el-radio :label="0">HTML 压缩</el-radio>
       <el-radio :label="1">Base64 编码</el-radio>
       <el-radio :label="2">Base64 解码</el-radio>
+      <el-radio :label="3">时间戳转日期</el-radio>
     </el-radio-group>
     <div class="html-optimize">
       <el-input
@@ -57,6 +58,9 @@
             break;
           case 2:
             this.textareaOutput = Base64.decode(this.textareaInput.trim())
+            break;
+          case 3:
+            this.textareaOutput = new Date(Number(this.textareaInput.trim())).toLocaleString()
             break;
         }
       }
