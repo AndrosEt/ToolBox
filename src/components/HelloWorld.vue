@@ -23,11 +23,21 @@
       </el-input>
     </div>
     <el-button class="btn" type="primary" @click="compress">转化</el-button>
+    <div class="svg-filter-tool">
+      <span class="tips">目标颜色：</span>
+      <el-input class="color-input" v-model="svgFilterColor" placeholder="请输入内容"></el-input>
+      <el-button type="primary" @click="svgFilterClick">Filter 转化</el-button>
+      <div class="result">
+        <div class="color-preview" :style="{'background': previewColor}"></div>
+        <span class="filter-result">{{filterResult}}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import {Base64} from "js-base64";
+  import {Color, Solver, hexToRgb} from "@/js/sgvFilter";
 
   export default {
     name: 'HelloWorld',
@@ -44,7 +54,10 @@
           0, // html optimize
           1, // base64 encode
           2, // base64 decode
-        ]
+        ],
+        svgFilterColor: '',
+        filterResult: '',
+        previewColor: '#fff'
       }
     },
     methods: {
@@ -63,6 +76,23 @@
             this.textareaOutput = new Date(Number(this.textareaInput.trim())).toLocaleString()
             break;
         }
+      },
+      svgFilterClick() {
+        if (this.svgFilterColor.trim().length <= 0) {
+          return;
+        }
+        const rgb = hexToRgb(this.svgFilterColor);
+        if (rgb.length !== 3) {
+          alert('Invalid format!');
+          return;
+        }
+
+        const color = new Color(rgb[0], rgb[1], rgb[2]);
+        const solver = new Solver(color);
+        const result = solver.solve();
+
+        this.filterResult = result.filter
+        this.previewColor = this.svgFilterColor.trim()
       }
     }
   }
@@ -101,6 +131,27 @@
       margin-top: 20px;
       width: fit-content;
       align-self: center;
+    }
+
+    .svg-filter-tool {
+      margin-top: 40px;
+
+      .color-input {
+        width: 200px;
+        margin-right: 20px;
+      }
+
+      .result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .color-preview {
+          width: 50px;
+          height: 50px;
+          margin-right: 20px;
+        }
+      }
+
     }
   }
 </style>
