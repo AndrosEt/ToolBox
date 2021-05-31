@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/AndrosEt/ToolBox/badge.svg?branch=master)](https://coveralls.io/github/AndrosEt/ToolBox?branch=master)
 # tool-box
 
 ### 一个常用在线工具集合，希望可以越来越全面，在线地址：https://androset.github.io/ToolBox/
