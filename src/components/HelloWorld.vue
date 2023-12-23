@@ -5,6 +5,7 @@
       <el-radio :label="1">Base64 编码</el-radio>
       <el-radio :label="2">Base64 解码</el-radio>
       <el-radio :label="3">时间戳转日期</el-radio>
+      <el-radio :label="4">URL Encode</el-radio>
     </el-radio-group>
     <div class="html-optimize">
       <el-input
@@ -74,6 +75,9 @@
             break;
           case 3:
             this.textareaOutput = new Date(Number(this.textareaInput.trim())).toLocaleString()
+            break;
+          case 4:
+            this.textareaOutput = encodeURIComponent(this.textareaInput.trim())
             break;
         }
       },
